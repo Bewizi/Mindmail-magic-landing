@@ -60,8 +60,9 @@ const HeroSection = () => {
                 <Book className="w-5 h-5 mr-2" />
                 Discover the Book
               </Link>
-              <Link to="#features" className="cosmic-button-outline text-center">
-                Explore the Dashboard
+              <Link to="/dashboard" className="cosmic-button-outline text-center flex items-center justify-center">
+                <Brain className="w-5 h-5 mr-2" />
+                Try the Dashboard
               </Link>
             </div>
           </ScrollReveal>

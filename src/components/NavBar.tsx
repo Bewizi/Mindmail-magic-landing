@@ -42,6 +42,12 @@ const NavBar = () => {
           <NavLink href="#how-it-works">How It Works</NavLink>
           <NavLink href="#testimonials">Testimonials</NavLink>
           <Link 
+            to="/dashboard" 
+            className="cosmic-button-outline text-sm"
+          >
+            Dashboard
+          </Link>
+          <Link 
             to="#contact" 
             className="cosmic-button text-sm"
           >
@@ -77,6 +83,13 @@ const NavBar = () => {
           <MobileNavLink href="#book" onClick={() => setMobileMenuOpen(false)}>Audiobook</MobileNavLink>
           <MobileNavLink href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>How It Works</MobileNavLink>
           <MobileNavLink href="#testimonials" onClick={() => setMobileMenuOpen(false)}>Testimonials</MobileNavLink>
+          <Link 
+            to="/dashboard" 
+            className="text-white/90 text-lg font-medium py-2 block"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Dashboard
+          </Link>
           <Link 
             to="#contact" 
             className="cosmic-button text-center py-2"
