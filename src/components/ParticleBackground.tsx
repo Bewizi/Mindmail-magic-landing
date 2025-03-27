@@ -17,6 +17,7 @@ const ParticleBackground = () => {
   const animationFrameId = useRef<number>(0);
   const mousePosition = useRef({ x: 0, y: 0 });
   const isMouseMoving = useRef(false);
+  const mouseTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -129,8 +130,11 @@ const ParticleBackground = () => {
       isMouseMoving.current = true;
       
       // Reset mouse moving state after inactivity
-      clearTimeout(window.mouseTimeout);
-      window.mouseTimeout = setTimeout(() => {
+      if (mouseTimeoutRef.current !== null) {
+        window.clearTimeout(mouseTimeoutRef.current);
+      }
+      
+      mouseTimeoutRef.current = window.setTimeout(() => {
         isMouseMoving.current = false;
       }, 100);
     };
@@ -146,6 +150,9 @@ const ParticleBackground = () => {
       window.removeEventListener('resize', resizeCanvas);
       canvas.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId.current);
+      if (mouseTimeoutRef.current !== null) {
+        window.clearTimeout(mouseTimeoutRef.current);
+      }
     };
   }, []);
 
