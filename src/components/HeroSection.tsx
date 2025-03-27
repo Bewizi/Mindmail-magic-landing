@@ -2,7 +2,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from './ScrollReveal';
-import AnimatedText from './AnimatedText';
 
 const HeroSection = () => {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -49,11 +48,9 @@ const HeroSection = () => {
           </ScrollReveal>
           
           <ScrollReveal delay={700} direction="left">
-            <AnimatedText 
-              text="The audiobook & dashboard system that helps you clear mental fog, organize your thoughts, and achieve sustained focus and productivity."
-              className="text-white/80 text-lg md:text-xl leading-relaxed"
-              speed={20}
-            />
+            <p className="text-white/80 text-lg md:text-xl leading-relaxed">
+              The audiobook & dashboard system that helps you clear mental fog, organize your thoughts, and achieve sustained focus and productivity.
+            </p>
           </ScrollReveal>
           
           <ScrollReveal delay={900} direction="left">
