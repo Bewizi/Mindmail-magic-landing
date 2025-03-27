@@ -90,9 +90,9 @@ const HeroSection = () => {
             <div className="relative">
               <img
                 ref={imageRef}
-                src="/lovable-uploads/b005bd91-f09a-4a31-8fd0-cbf88caf1bfa.png"
-                alt="MindMail Dashboard Visualization"
-                className="max-w-full w-[80%] mx-auto transition-transform duration-200 relative z-10"
+                src="/lovable-uploads/afcce6a3-cefa-4d12-b014-5405bbe7fecc.png"
+                alt="Quantum Consciousness Visualization"
+                className="max-w-full w-[80%] mx-auto transition-transform duration-200 relative z-10 rounded-xl shadow-2xl"
               />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] rounded-full bg-cosmic-500/20 blur-3xl animate-pulse"></div>
               <div className="absolute top-0 right-0 -translate-x-1/2 -translate-y-1/4 w-12 h-12 rounded-full bg-cosmic-300/30 animate-float"></div>
