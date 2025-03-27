@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
@@ -26,6 +25,7 @@ import Footer from '../components/Footer';
 import DashboardNav from '../components/DashboardNav';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
+import UniverseChat from '../components/UniverseChat';
 
 interface Affirmation {
   id: string;
@@ -202,8 +202,8 @@ const Dashboard = () => {
             />
           </div>
           
-          {/* Creation Form */}
-          {isCreating && (
+          {/* Universe Chat Card + Affirmation Creation Form */}
+          {isCreating ? (
             <Card className="mb-8 cosmic-card">
               <CardHeader>
                 <CardTitle className="text-white">Create New Affirmation</CardTitle>
@@ -252,6 +252,27 @@ const Dashboard = () => {
                 </Button>
               </CardFooter>
             </Card>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <UniverseChat />
+              <Card className="cosmic-card col-span-1 md:col-span-2 h-full">
+                <CardContent className="flex flex-col items-center justify-center py-6 h-full">
+                  <div className="text-center max-w-md mx-auto">
+                    <h3 className="text-xl font-medium text-white mb-4">Daily Quantum Tip</h3>
+                    <p className="text-white/80 mb-4">
+                      "Your focus creates reality. Bring conscious awareness to what you want to manifest, not what you fear."
+                    </p>
+                    <Button 
+                      className="cosmic-button"
+                      onClick={() => setIsCreating(true)}
+                    >
+                      <Plus size={18} className="mr-2" />
+                      Create New Affirmation
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           )}
           
           {/* Affirmation Cards */}
