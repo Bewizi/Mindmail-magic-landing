@@ -42,7 +42,7 @@ const testimonials = [
 
 const TestimonialSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const slideRef = useRef<HTMLDivElement>(null);
+  const testimonialContainerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -65,12 +65,6 @@ const TestimonialSection = () => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
     }, 6000);
   };
-
-  useEffect(() => {
-    if (slideRef.current) {
-      slideRef.current.style.transform = `translateX(-${activeIndex * 100}%)`;
-    }
-  }, [activeIndex]);
 
   const handlePrevious = () => {
     setActiveIndex((prevIndex) => 
@@ -113,15 +107,15 @@ const TestimonialSection = () => {
           
           <div className="relative overflow-hidden rounded-2xl cosmic-card">
             <div 
-              ref={slideRef}
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ width: `${testimonials.length * 100}%` }}
+              ref={testimonialContainerRef}
+              className="flex"
+              style={{ transform: `translateX(-${activeIndex * 100}%)`, transition: 'transform 500ms ease-in-out' }}
             >
               {testimonials.map((testimonial, index) => (
                 <div 
                   key={index} 
                   className="w-full px-6 md:px-12 py-10 md:py-16 flex-shrink-0"
-                  style={{ width: `${100 / testimonials.length}%` }}
+                  style={{ width: '100%' }}
                 >
                   <div className="flex flex-col h-full max-w-2xl mx-auto">
                     <div className="mb-8 flex justify-center">
