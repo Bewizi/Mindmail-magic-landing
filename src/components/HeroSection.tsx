@@ -55,9 +55,27 @@ const HeroSection = () => {
           
           <ScrollReveal delay={900} direction="left">
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-              <Link to="#book" className="cosmic-button text-center">
-                Discover the Audiobook
-              </Link>
+              <a 
+                href="/book.pdf" 
+                download 
+                className="cosmic-button text-center flex items-center justify-center"
+              >
+                <svg 
+                  className="w-5 h-5 mr-2" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth="2" 
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+                Download PDF Book
+              </a>
               <Link to="#features" className="cosmic-button-outline text-center">
                 Explore the Dashboard
               </Link>
