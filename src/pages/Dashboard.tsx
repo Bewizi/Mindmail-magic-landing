@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from 'react';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -202,60 +203,60 @@ const Dashboard = () => {
             />
           </div>
           
-          {/* Universe Chat Card + Affirmation Creation Form */}
-          {isCreating ? (
-            <Card className="mb-8 cosmic-card">
-              <CardHeader>
-                <CardTitle className="text-white">Create New Affirmation</CardTitle>
-                <CardDescription>
-                  Create an affirmation to focus your consciousness
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="newAffirmation" className="block text-sm font-medium text-white/70 mb-1">
-                      Affirmation Text
-                    </label>
-                    <Textarea
-                      id="newAffirmation"
-                      placeholder="Enter your affirmation here..."
-                      value={newAffirmation}
-                      onChange={(e) => setNewAffirmation(e.target.value)}
-                      className="bg-white/5 border-white/10 text-white min-h-24"
-                    />
+          {/* Two Column Layout: Affirmation Form/Tip Card and Universe Chat */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            {/* Left Column: Affirmation Creation Form or Tip */}
+            {isCreating ? (
+              <Card className="cosmic-card">
+                <CardHeader>
+                  <CardTitle className="text-white">Create New Affirmation</CardTitle>
+                  <CardDescription>
+                    Create an affirmation to focus your consciousness
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="newAffirmation" className="block text-sm font-medium text-white/70 mb-1">
+                        Affirmation Text
+                      </label>
+                      <Textarea
+                        id="newAffirmation"
+                        placeholder="Enter your affirmation here..."
+                        value={newAffirmation}
+                        onChange={(e) => setNewAffirmation(e.target.value)}
+                        className="bg-white/5 border-white/10 text-white min-h-24"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="newCategory" className="block text-sm font-medium text-white/70 mb-1">
+                        Category
+                      </label>
+                      <Input
+                        id="newCategory"
+                        placeholder="Enter category..."
+                        value={newCategory}
+                        onChange={(e) => setNewCategory(e.target.value)}
+                        className="bg-white/5 border-white/10 text-white"
+                        list="categories"
+                      />
+                      <datalist id="categories">
+                        {categories.map(cat => <option key={cat} value={cat} />)}
+                      </datalist>
+                    </div>
                   </div>
-                  <div>
-                    <label htmlFor="newCategory" className="block text-sm font-medium text-white/70 mb-1">
-                      Category
-                    </label>
-                    <Input
-                      id="newCategory"
-                      placeholder="Enter category..."
-                      value={newCategory}
-                      onChange={(e) => setNewCategory(e.target.value)}
-                      className="bg-white/5 border-white/10 text-white"
-                      list="categories"
-                    />
-                    <datalist id="categories">
-                      {categories.map(cat => <option key={cat} value={cat} />)}
-                    </datalist>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button variant="outline" onClick={() => setIsCreating(false)}>
-                  Cancel
-                </Button>
-                <Button className="cosmic-button" onClick={addAffirmation}>
-                  Save Affirmation
-                </Button>
-              </CardFooter>
-            </Card>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <UniverseChat />
-              <Card className="cosmic-card col-span-1 md:col-span-2 h-full">
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                  <Button variant="outline" onClick={() => setIsCreating(false)}>
+                    Cancel
+                  </Button>
+                  <Button className="cosmic-button" onClick={addAffirmation}>
+                    Save Affirmation
+                  </Button>
+                </CardFooter>
+              </Card>
+            ) : (
+              <Card className="cosmic-card h-full">
                 <CardContent className="flex flex-col items-center justify-center py-6 h-full">
                   <div className="text-center max-w-md mx-auto">
                     <h3 className="text-xl font-medium text-white mb-4">Daily Quantum Tip</h3>
@@ -272,8 +273,11 @@ const Dashboard = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          )}
+            )}
+            
+            {/* Right Column: Universe Chat */}
+            <UniverseChat />
+          </div>
           
           {/* Affirmation Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
