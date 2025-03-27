@@ -19,7 +19,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-white/60 mb-6">
-              Unlock your mind's true potential with our neuroscience-backed mental training system.
+              Transform your mental operating system with our audiobook and dashboard system.
             </p>
             <div className="flex space-x-4">
               <SocialLink href="#" icon="twitter" />
@@ -35,8 +35,8 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <FooterLink href="#features">Features</FooterLink>
+              <FooterLink href="#book">Audiobook</FooterLink>
               <FooterLink href="#how-it-works">How It Works</FooterLink>
-              <FooterLink href="#pricing">Pricing</FooterLink>
               <FooterLink href="#testimonials">Testimonials</FooterLink>
             </ul>
           </div>

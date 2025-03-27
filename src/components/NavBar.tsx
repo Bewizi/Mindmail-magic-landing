@@ -38,9 +38,9 @@ const NavBar = () => {
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8">
           <NavLink href="#features">Features</NavLink>
+          <NavLink href="#book">Audiobook</NavLink>
           <NavLink href="#how-it-works">How It Works</NavLink>
           <NavLink href="#testimonials">Testimonials</NavLink>
-          <NavLink href="#pricing">Pricing</NavLink>
           <Link 
             to="#contact" 
             className="cosmic-button text-sm"
@@ -74,9 +74,9 @@ const NavBar = () => {
       >
         <div className="container mx-auto px-6 flex flex-col space-y-4">
           <MobileNavLink href="#features" onClick={() => setMobileMenuOpen(false)}>Features</MobileNavLink>
+          <MobileNavLink href="#book" onClick={() => setMobileMenuOpen(false)}>Audiobook</MobileNavLink>
           <MobileNavLink href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>How It Works</MobileNavLink>
           <MobileNavLink href="#testimonials" onClick={() => setMobileMenuOpen(false)}>Testimonials</MobileNavLink>
-          <MobileNavLink href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</MobileNavLink>
           <Link 
             to="#contact" 
             className="cosmic-button text-center py-2"

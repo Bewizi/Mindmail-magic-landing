@@ -3,19 +3,22 @@ import ScrollReveal from './ScrollReveal';
 
 const features = [
   {
-    title: "Neural Synchronization",
-    description: "Advanced algorithms that help synchronize your brain waves for optimal mental performance and clarity.",
+    title: "Mental Operating System",
+    description: "Learn the foundational principles of the MindMail methodology for organizing your thinking patterns.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" strokeWidth="2"/>
-        <path d="M15 9L9 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M9 9L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" strokeWidth="2"/>
+        <path d="M21 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M5 12H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M12 5V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M12 21V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Mindfulness Training",
-    description: "Personalized mindfulness exercises that adapt to your cognitive profile and mental state.",
+    title: "Thought Organization",
+    description: "Practical techniques from the audiobook implemented in the dashboard to structure and prioritize your ideas.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
@@ -24,8 +27,8 @@ const features = [
     ),
   },
   {
-    title: "Cognitive Enhancement",
-    description: "Targeted exercises that boost memory, focus, creativity, and problem-solving abilities.",
+    title: "Mental Clarity Routine",
+    description: "Follow the guided audio sessions and use the dashboard to establish your daily mental clarity practice.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" strokeWidth="2"/>
@@ -39,8 +42,8 @@ const features = [
     ),
   },
   {
-    title: "Mood Optimization",
-    description: "Techniques that help stabilize emotions, reduce stress, and enhance your overall sense of well-being.",
+    title: "Focus Enhancement",
+    description: "Scientifically-backed techniques from the book, integrated with dashboard tools for deep work and sustained attention.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
@@ -51,8 +54,8 @@ const features = [
     ),
   },
   {
-    title: "Sleep Enhancement",
-    description: "Programs designed to improve sleep quality through brainwave entrainment and relaxation techniques.",
+    title: "Mental Decluttering",
+    description: "Learn the MindMail approach to eliminating mental noise and creating space for important thoughts and ideas.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
@@ -63,8 +66,8 @@ const features = [
     ),
   },
   {
-    title: "Personalized Growth",
-    description: "Adaptive programs that evolve with your progress, ensuring continuous cognitive development.",
+    title: "Continuous Improvement",
+    description: "The audiobook teaches the principles while the dashboard tracks your progress and adapts to your evolving mental clarity journey.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
@@ -83,13 +86,13 @@ const FeatureSection = () => {
       <div className="container mx-auto max-w-6xl">
         <ScrollReveal className="text-center mb-16 max-w-3xl mx-auto">
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium tracking-wide text-cosmic-200 border border-cosmic-400/30 bg-cosmic-900/50 backdrop-blur-sm mb-4">
-            Advanced Features
+            The Complete System
           </span>
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-gradient">
-            Transform Your Mental Landscape
+            Audiobook + Dashboard
           </h2>
           <p className="text-white/70 text-lg leading-relaxed">
-            MindMail combines cutting-edge neuroscience with personalized mental training to help you achieve peak cognitive performance.
+            The MindMail system combines a comprehensive audiobook with a powerful dashboard to transform your mental clarity and productivity.
           </p>
         </ScrollReveal>
         
@@ -115,10 +118,10 @@ const FeatureSection = () => {
         
         <ScrollReveal className="mt-16 text-center" delay={800}>
           <a 
-            href="#how-it-works" 
+            href="#book" 
             className="cosmic-button inline-flex items-center space-x-2"
           >
-            <span>Learn How It Works</span>
+            <span>Learn About the Audiobook</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
               <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>

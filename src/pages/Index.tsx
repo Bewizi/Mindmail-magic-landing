@@ -1,8 +1,8 @@
-
 import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection';
 import FeatureSection from '../components/FeatureSection';
+import BookSection from '../components/BookSection';
 import TestimonialSection from '../components/TestimonialSection';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
@@ -10,7 +10,7 @@ import ParticleBackground from '../components/ParticleBackground';
 const Index = () => {
   useEffect(() => {
     // Update document title
-    document.title = 'MindMail - Transform Your Mental Clarity';
+    document.title = 'MindMail - Upgrade Your Mental Operating System';
     
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -66,6 +66,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <FeatureSection />
+        <BookSection />
         
         {/* How It Works Section */}
         <section id="how-it-works" className="py-24 px-6 relative overflow-hidden">
