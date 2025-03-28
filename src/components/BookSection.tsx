@@ -75,7 +75,7 @@ const BookSection = () => {
               <div className="relative z-10">
                 <div className="relative mx-auto w-[80%]">
                   <img 
-                    src="/lovable-uploads/afcce6a3-cefa-4d12-b014-5405bbe7fecc.png" 
+                    src="/lovable-uploads/5a8569e4-628f-40ac-9a4f-5f71cd2e993b.png" 
                     alt="MindMail Audiobook" 
                     className="w-full rounded-xl cosmic-card p-4"
                   />
