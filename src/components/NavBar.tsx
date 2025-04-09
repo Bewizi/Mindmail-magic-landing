@@ -1,6 +1,5 @@
-
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -15,16 +14,16 @@ const NavBar = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'py-3 cosmic-blur' : 'py-6 bg-transparent'
+        scrolled ? "py-3 cosmic-blur" : "py-6 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -41,57 +40,92 @@ const NavBar = () => {
           <NavLink href="#book">Audiobook</NavLink>
           <NavLink href="#how-it-works">How It Works</NavLink>
           <NavLink href="#testimonials">Testimonials</NavLink>
-          <Link 
-            to="/dashboard" 
-            className="cosmic-button-outline text-sm"
-          >
+          <Link to="/dashboard" className="cosmic-button-outline text-sm">
             Dashboard
           </Link>
-          <Link 
-            to="#contact" 
-            className="cosmic-button text-sm"
-          >
+          <Link to="/get-started" className="cosmic-button text-sm">
             Get Started
           </Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <button 
+        <button
           className="md:hidden text-white focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
             </svg>
           ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
             </svg>
           )}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      <div 
+      <div
         className={`md:hidden absolute top-full left-0 right-0 cosmic-blur backdrop-blur-lg transition-all duration-300 ease-in-out ${
-          mobileMenuOpen ? 'max-h-screen py-4 opacity-100' : 'max-h-0 py-0 opacity-0 pointer-events-none'
+          mobileMenuOpen
+            ? "max-h-screen py-4 opacity-100"
+            : "max-h-0 py-0 opacity-0 pointer-events-none"
         } overflow-hidden`}
       >
         <div className="container mx-auto px-6 flex flex-col space-y-4">
-          <MobileNavLink href="#features" onClick={() => setMobileMenuOpen(false)}>Features</MobileNavLink>
-          <MobileNavLink href="#book" onClick={() => setMobileMenuOpen(false)}>Audiobook</MobileNavLink>
-          <MobileNavLink href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>How It Works</MobileNavLink>
-          <MobileNavLink href="#testimonials" onClick={() => setMobileMenuOpen(false)}>Testimonials</MobileNavLink>
-          <Link 
-            to="/dashboard" 
+          <MobileNavLink
+            href="#features"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Features
+          </MobileNavLink>
+          <MobileNavLink href="#book" onClick={() => setMobileMenuOpen(false)}>
+            Audiobook
+          </MobileNavLink>
+          <MobileNavLink
+            href="#how-it-works"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            How It Works
+          </MobileNavLink>
+          <MobileNavLink
+            href="#testimonials"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Testimonials
+          </MobileNavLink>
+          <Link
+            to="/dashboard"
             className="text-white/90 text-lg font-medium py-2 block"
             onClick={() => setMobileMenuOpen(false)}
           >
             Dashboard
           </Link>
-          <Link 
-            to="#contact" 
+          <Link
+            to="#contact"
             className="cosmic-button text-center py-2"
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -103,10 +137,16 @@ const NavBar = () => {
   );
 };
 
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+const NavLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => {
   return (
-    <a 
-      href={href} 
+    <a
+      href={href}
       className="animated-underline text-white/90 text-sm font-medium"
     >
       {children}
@@ -114,10 +154,18 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   );
 };
 
-const MobileNavLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick: () => void }) => {
+const MobileNavLink = ({
+  href,
+  children,
+  onClick,
+}: {
+  href: string;
+  children: React.ReactNode;
+  onClick: () => void;
+}) => {
   return (
-    <a 
-      href={href} 
+    <a
+      href={href}
       className="text-white/90 text-lg font-medium py-2 block"
       onClick={onClick}
     >
