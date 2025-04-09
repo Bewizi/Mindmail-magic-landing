@@ -13,7 +13,6 @@ import { Send, Bot } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import axios from "axios";
-import httpClient from "@/utils/httpClient";
 
 interface Message {
   id: string;
@@ -53,32 +52,6 @@ const UniverseChat = () => {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
-  const [prompt, setPrompt] = useState("");
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleImageGeneration = async () => {
-    if (!prompt) return;
-
-    setLoading(true);
-
-    try {
-      const response = await httpClient.post("/generate-image", { prompt });
-      console.log(response.data);
-
-      setImageUrl(response.data.imageUrl);
-    } catch (e) {
-      console.log("Error generating image:", e);
-      toast({
-        variant: "destructive",
-        title: "Something went wrong",
-        description: "Unable to generate image. Please try again.",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -127,6 +100,37 @@ const UniverseChat = () => {
     }
   };
 
+  const [postData, setPostData] = useState({
+    prompt: "",
+    // model: "gpt-3.5-turbo",
+    // temperature: 0.7,
+    // max_tokens: 200,
+    // top_p: 1,
+    // frequency_penalty: 0,
+    // presence_penalty: 0,
+    // stop: null
+  });
+
+  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPostData({ ...postData, prompt: e.target.value });
+    try {
+      const response = await axios.post(
+        "https://mindmailaiimagegenerator.onrender.com/generate-image",
+        postData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+          },
+        }
+      );
+      const data = response.data;
+      console.log(data);
+    } catch (error) {
+      console.log("Error submit data:", error);
+    }
+  };
+
   return (
     <Card className="cosmic-card h-full flex flex-col">
       <CardHeader className="border-b border-white/10 pb-3">
@@ -145,17 +149,7 @@ const UniverseChat = () => {
         </div>
       </CardHeader>
       <CardContent className="flex-grow overflow-hidden flex flex-col p-0">
-        {prompt && (
-          <p className="text-lg text-end font-semibold my-8">{prompt}</p>
-        )}
-        {imageUrl && (
-          <img
-            src={imageUrl}
-            alt="Generated AI Art"
-            className="rounded-lg shadow-md max-w-full h-auto"
-          />
-        )}
-        {/* <div className="flex flex-col space-y-4 p-4 overflow-y-auto flex-grow max-h-[400px]">
+        <div className="flex flex-col space-y-4 p-4 overflow-y-auto flex-grow max-h-[400px]">
           {messages.map((message) => (
             <div
               key={message.id}
@@ -184,22 +178,18 @@ const UniverseChat = () => {
             </div>
           ))}
           <div ref={messagesEndRef} />
-        </div> */}
+        </div>
         <div className="border-t border-white/10 p-4 mt-auto">
           <div className="flex space-x-2">
             <Input
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyPress}
-              placeholder="Enter your prompt"
+              placeholder="Type your intention to the Universe..."
               className="bg-white/5 border-white/10 text-white"
             />
-            <Button
-              onClick={handleImageGeneration}
-              disabled={loading}
-              className="cosmic-button"
-            >
-              {loading ? "Gen.." : <Send size={18} />}
+            <Button onClick={handleSendMessage} className="cosmic-button">
+              <Send size={18} />
             </Button>
           </div>
         </div>
