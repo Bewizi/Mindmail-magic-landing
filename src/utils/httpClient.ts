@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const httpClient = axios.create({
+export const httpClient = axios.create({
   baseURL: "https://mindmailaiimagegenerator.onrender.com",
   headers: {
     "Content-Type": "application/json",
@@ -8,4 +8,9 @@ const httpClient = axios.create({
   // withCredentials: true,
 });
 
-export default httpClient;
+export const audioClient = axios.create({
+  baseURL: "https://mindmail-audio-bot.onrender.com",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
