@@ -125,7 +125,7 @@ const NavBar = () => {
             Dashboard
           </Link>
           <Link
-            to="#contact"
+            to="/get-started"
             className="cosmic-button text-center py-2"
             onClick={() => setMobileMenuOpen(false)}
           >
