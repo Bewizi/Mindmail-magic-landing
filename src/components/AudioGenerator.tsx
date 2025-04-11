@@ -1,14 +1,6 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
 import { Send, Loader, Volume2, Download, Pause } from "lucide-react";
 import { audioClient } from "@/utils/httpClient";
 
@@ -35,27 +27,19 @@ const GenerateAudio = () => {
     setError("");
 
     try {
-      // Using the specific endpoint provided
       const response = await audioClient.post("/manifest", { userInput });
 
-      console.log("API Response:", response.data);
-
-      // Handle different possible response formats
       let audioData;
       if (response.data.audioUrl) {
-        // If API returns a URL
         audioData = response.data.audioUrl;
       } else if (response.data.audio) {
-        // If API returns base64 audio
         audioData = `data:audio/mp3;base64,${response.data.audio}`;
       } else if (response.data.url) {
-        // Another possible URL field
         audioData = response.data.url;
       } else if (
         typeof response.data === "string" &&
         response.data.startsWith("http")
       ) {
-        // If API returns a direct URL string
         audioData = response.data;
       } else {
         throw new Error("Couldn't find audio data in the response");
@@ -63,7 +47,6 @@ const GenerateAudio = () => {
 
       setAudioUrl(audioData);
 
-      // Automatically load the audio once it's available
       if (audioRef.current) {
         audioRef.current.load();
       }
@@ -110,7 +93,6 @@ const GenerateAudio = () => {
   const handleDownload = () => {
     if (!audioUrl) return;
 
-    // Create a temporary anchor element for downloading
     const a = document.createElement("a");
     a.href = audioUrl;
     a.download = `audio-${Date.now()}.mp3`;
@@ -120,89 +102,99 @@ const GenerateAudio = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>AI Audio Generator</CardTitle>
-          <CardDescription>Convert text to speech with AI</CardDescription>
-        </CardHeader>
+    <div>
+      {/* Left Panel */}
+      <div className="bg-gray-900 bg-opacity-60 p-6 rounded-lg border border-gray-800">
+        <div className="mb-4">
+          <h2 className="text-purple-500 mb-2">
+            Tell the Universe your Intentions
+          </h2>
+          <p className="text-sm text-gray-400">
+            Give voice to your intentions. Listen and align your energy with
+            success.
+          </p>
+        </div>
 
-        <CardContent className="space-y-4">
-          {/* Audio Player */}
-          {audioUrl && (
-            <div className="bg-slate-100 p-4 rounded-lg">
-              <audio
-                ref={audioRef}
-                src={audioUrl}
-                onEnded={handleAudioEnded}
-                onLoadedData={handleAudioLoaded}
-                onError={handleAudioError}
-                className="w-full"
-                controls
-              />
-              <div className="flex justify-center space-x-2 mt-3">
-                <Button variant="outline" size="sm" onClick={togglePlayPause}>
-                  {isPlaying ? (
-                    <Pause className="h-4 w-4 mr-2" />
-                  ) : (
-                    <Volume2 className="h-4 w-4 mr-2" />
-                  )}
-                  {isPlaying ? "Pause" : "Play"}
-                </Button>
-                <Button variant="outline" size="sm" onClick={handleDownload}>
-                  <Download className="h-4 w-4 mr-2" /> Download
-                </Button>
-              </div>
-            </div>
-          )}
+        <div className="bg-gray-800 bg-opacity-70 p-4 rounded-md mb-4 max-w-sm">
+          <p className="text-sm">
+            Welcome to MindMelt. Tell us what you would like to manifest
+          </p>
+        </div>
 
-          {/* Error Message */}
-          {error && (
-            <div className="bg-red-50 text-red-800 p-3 rounded-md text-sm">
-              {error}
-            </div>
-          )}
-
-          {/* Display the current prompt */}
-          {audioUrl && (
-            <div className="bg-slate-50 p-3 rounded-md text-[#1e1e1e]">
-              <p className="text-sm font-medium">Generated from:</p>
-              <p className="italic">"{userInput}"</p>
-            </div>
-          )}
-
-          {/* Text Input Area */}
-          <div className="flex space-x-2">
-            <Input
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              onKeyDown={handleKeyPress}
-              placeholder="Enter text to convert to speech"
-              className="flex-1"
-            />
-            <Button
-              onClick={handleAudioGeneration}
-              disabled={loading || !userInput.trim()}
-            >
-              {loading ? (
-                <Loader className="h-4 w-4 animate-spin" />
-              ) : (
-                <Send className="h-4 w-4" />
-              )}
-            </Button>
+        <div className="bg-purple-600 text-start py-2 px-4 ml-auto rounded-md mb-4 w-[220px] ">
+          <button className="text-white">I want to get a new job</button>
+        </div>
+        {audioUrl && (
+          <div className="bg-gray-800 p-3 rounded-md text-white mb-4">
+            <p className="text-sm font-medium">Generated from:</p>
+            <p className="italic">"{userInput}"</p>
           </div>
-        </CardContent>
+        )}
 
-        <CardFooter>
+        <div className="relative mb-4">
+          <Input
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="What do you want to speak into reality?..."
+            className="pr-12 bg-gray-800 border-gray-700 text-white"
+          />
           <Button
             onClick={handleAudioGeneration}
             disabled={loading || !userInput.trim()}
-            className="w-full"
+            className="absolute right-0 top-0 h-full bg-transparent hover:bg-transparent"
           >
-            {loading ? "Generating..." : "Generate Audio"}
+            {loading ? (
+              <Loader className="h-5 w-5 text-purple-500 animate-spin" />
+            ) : (
+              <Send className="h-5 w-5 text-purple-500" />
+            )}
           </Button>
-        </CardFooter>
-      </Card>
+        </div>
+
+        {audioUrl && (
+          <div className="bg-gray-800 bg-opacity-70 p-3 rounded">
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={togglePlayPause}
+                className="text-purple-500 hover:text-purple-400"
+              >
+                {isPlaying ? (
+                  <Pause className="h-5 w-5" />
+                ) : (
+                  <Volume2 className="h-5 w-5" />
+                )}
+              </button>
+              <div className="flex-1 bg-gray-700 h-1 rounded-full overflow-hidden">
+                <div
+                  className="bg-purple-500 h-full"
+                  style={{ width: "30%" }}
+                ></div>
+              </div>
+              <button
+                onClick={handleDownload}
+                className="text-purple-500 hover:text-purple-400"
+              >
+                <Download className="h-5 w-5" />
+              </button>
+            </div>
+            <audio
+              ref={audioRef}
+              src={audioUrl}
+              onEnded={handleAudioEnded}
+              onLoadedData={handleAudioLoaded}
+              onError={handleAudioError}
+              className="hidden"
+            />
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-900 bg-opacity-30 text-red-300 p-3 rounded-md text-sm mt-2">
+            {error}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
