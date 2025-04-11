@@ -9,11 +9,20 @@ const GetStarted = () => {
       <NavBar />
       <main className="flex-grow pt-24 pb-16 px-4 md:px-6">
         <div>
-          <h1 className="text-4xl font-bold text-center mb-8">Get Started</h1>
-          <p className="text-lg text-center mb-4">
-            Ready to unlock the universe's secrets? Let's get started!
-          </p>
-          <div className="flex justify-center flex-wrap lg:flex-row lg:justify-evenly ">
+          <section className="max-w-5xl mx-auto mb-8">
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold">
+                Your Quantum{" "}
+                <span className="text-purple-500">Affirmations</span>
+              </h1>
+              <p className="text-gray-300">
+                Shape your reality with focused consciousness
+              </p>
+            </div>
+
+            <div className="bg-gray-900 bg-opacity-60 p-4 rounded-lg"></div>
+          </section>
+          <div className="flex justify-center flex-col gap-5 lg:flex-row lg:justify-evenly ">
             <AudioGenerator />
             <GenerateImage />
           </div>
