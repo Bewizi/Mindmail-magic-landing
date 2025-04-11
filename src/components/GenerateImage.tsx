@@ -11,6 +11,7 @@ const ImageTool = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [submittedInput, setSubmittedInput] = useState("");
   const [explanation, setExplanation] = useState("");
   const fileInputRef = useRef(null);
 
@@ -40,6 +41,9 @@ const ImageTool = () => {
       } else {
         throw new Error("No image URL in response");
       }
+
+      setSubmittedInput(prompt);
+      setPrompt("");
     } catch (error) {
       console.error("Error generating image:", error);
       setError("Failed to generate image. Please try again.");
@@ -158,33 +162,45 @@ const ImageTool = () => {
 
         <div className="bg-gray-800 bg-opacity-70 p-4 rounded-md mb-4 mr-auto max-w-xs">
           <p className="text-sm">
-            Upload a base image and a detailed description of what you want to
-            see
+            {submittedInput ? (
+              <>
+                <span className="font-bold"></span> {submittedInput}
+              </>
+            ) : (
+              <>
+                <span>
+                  Upload a base image and a detailed description of what you
+                  want to see
+                </span>
+              </>
+            )}
           </p>
         </div>
 
-        <div className="bg-purple-600 text-start py-2 px-4 rounded-md ml-auto mb-4 w-[320px]">
-          <button className="text-white">
-            Generate an image of me in a lambo
-          </button>
+        <div className=" text-start  px-4 rounded-md ml-auto mb-4 ">
+          {loading ? (
+            <div className="flex flex-col items-center justify-center  p-4 rounded mb-4 min-h-32">
+              <p className="mt-2 text-sm text-gray-300">
+                {isUploadMode ? "Analyzing image..." : "Generating image..."}
+              </p>
+            </div>
+          ) : imageUrl ? (
+            <div className=" bg-opacity-70 p-4 rounded mb-4">
+              <img
+                src={imageUrl}
+                alt="Generated AI Art"
+                className="rounded max-w-sm h-auto mx-auto object-cover block"
+              />
+            </div>
+          ) : (
+            <button className="text-white">
+              Generate an image of me in a lambo
+            </button>
+          )}
         </div>
 
         {/* Display Area */}
-        {loading ? (
-          <div className="flex flex-col items-center justify-center bg-gray-800 bg-opacity-70 p-4 rounded mb-4 min-h-32">
-            {/* <p className="mt-2 text-sm text-gray-300">
-              {isUploadMode ? "Analyzing image..." : "Generating image..."}
-            </p> */}
-          </div>
-        ) : imageUrl ? (
-          <div className=" bg-opacity-70 p-4 rounded mb-4">
-            <img
-              src={imageUrl}
-              alt="Generated AI Art"
-              className="rounded max-w-sm h-auto mx-auto object-cover block"
-            />
-          </div>
-        ) : uploadedImage ? (
+        {uploadedImage ? (
           <div className="bg-opacity-70 p-4 rounded mb-4">
             <img
               src={uploadedImage}

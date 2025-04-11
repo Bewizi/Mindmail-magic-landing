@@ -10,6 +10,8 @@ const GenerateAudio = () => {
   const [loading, setLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [error, setError] = useState("");
+  const [submittedInput, setSubmittedInput] = useState(""); // To store submitted input
+  const [response, setResponse] = useState("");
   const audioRef = useRef(null);
 
   // Handle keyboard submission with Enter key
@@ -46,6 +48,9 @@ const GenerateAudio = () => {
       }
 
       setAudioUrl(audioData);
+      setResponse("Audio generated successfully!"); // Store response on success
+      setSubmittedInput(userInput); // Store the submitted input
+      setUserInput(""); // Clear the input field after submission
 
       if (audioRef.current) {
         audioRef.current.load();
@@ -117,19 +122,62 @@ const GenerateAudio = () => {
 
         <div className="bg-gray-800 bg-opacity-70 p-4 rounded-md mb-4 max-w-sm">
           <p className="text-sm">
-            Welcome to MindMelt. Tell us what you would like to manifest
+            {submittedInput ? (
+              <>
+                <span className="font-bold"></span> {submittedInput}
+              </>
+            ) : (
+              <span>
+                Welcome to MindMelt. Tell us what you would like to manifest
+              </span>
+            )}
           </p>
+
+          {/* Display the response */}
         </div>
 
-        <div className="bg-purple-600 text-start py-2 px-4 ml-auto rounded-md mb-4 w-[220px] ">
-          <button className="text-white">I want to get a new job</button>
+        <div className="mb-4 ml-auto w-[220px]">
+          {audioUrl ? (
+            <div className="bg-gray-800 bg-opacity-70 p-3 rounded">
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={togglePlayPause}
+                  className="text-purple-500 hover:text-purple-400"
+                >
+                  {isPlaying ? (
+                    <Pause className="h-5 w-5" />
+                  ) : (
+                    <Volume2 className="h-5 w-5" />
+                  )}
+                </button>
+                <div className="flex-1 bg-gray-700 h-1 rounded-full overflow-hidden">
+                  <div
+                    className="bg-purple-500 h-full"
+                    style={{ width: "30%" }}
+                  ></div>
+                </div>
+                <button
+                  onClick={handleDownload}
+                  className="text-purple-500 hover:text-purple-400"
+                >
+                  <Download className="h-5 w-5" />
+                </button>
+              </div>
+              <audio
+                ref={audioRef}
+                src={audioUrl}
+                onEnded={handleAudioEnded}
+                onLoadedData={handleAudioLoaded}
+                onError={handleAudioError}
+                className="hidden"
+              />
+            </div>
+          ) : (
+            <div className="bg-purple-600 text-start py-2 px-4 ml-auto rounded-md mb-4 w-[220px] ">
+              <button className="text-white">I want to get a new job</button>
+            </div>
+          )}
         </div>
-        {audioUrl && (
-          <div className="bg-gray-800 p-3 rounded-md text-white mb-4">
-            <p className="text-sm font-medium">Generated from:</p>
-            <p className="italic">"{userInput}"</p>
-          </div>
-        )}
 
         <div className="relative mb-4">
           <Input
@@ -152,7 +200,7 @@ const GenerateAudio = () => {
           </Button>
         </div>
 
-        {audioUrl && (
+        {/* {audioUrl && (
           <div className="bg-gray-800 bg-opacity-70 p-3 rounded">
             <div className="flex items-center space-x-2">
               <button
@@ -187,7 +235,7 @@ const GenerateAudio = () => {
               className="hidden"
             />
           </div>
-        )}
+        )} */}
 
         {error && (
           <div className="bg-red-900 bg-opacity-30 text-red-300 p-3 rounded-md text-sm mt-2">
